@@ -1,0 +1,39 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@": ["./src"],
+      "@/*": ["./src/*"],
+      "@assets*": ["./src/assets, ./src/assets*"],
+      "@components": ["./src/components"],
+      "@entities": ["./src/entities"],
+      "@helpers": ["./src/helpers"],
+      "@i18n": ["./src/i18n"],
+      "@scenes": ["./src/scenes"],
+      "@styles": ["./src/styles"],
+      "@utilities": ["./src/utilities"],
+      "@views": ["./src/views"],
+    },
+  },
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}

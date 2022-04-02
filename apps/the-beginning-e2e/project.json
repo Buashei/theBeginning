@@ -1,0 +1,28 @@
+{
+  "root": "apps/the-beginning-e2e",
+  "sourceRoot": "apps/the-beginning-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/the-beginning-e2e/cypress.json",
+        "devServerTarget": "the-beginning:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "the-beginning:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/the-beginning-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["the-beginning"]
+}
