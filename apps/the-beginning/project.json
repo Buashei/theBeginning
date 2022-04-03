@@ -1,74 +1,102 @@
 {
-  "root": "apps/the-beginning",
-  "sourceRoot": "apps/the-beginning/src",
-  "projectType": "application",
-  "targets": {
-    "build": {
-      "executor": "@nrwl/web:webpack",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "options": {
-        "compiler": "babel",
-        "outputPath": "dist/apps/the-beginning",
-        "index": "apps/the-beginning/src/index.html",
-        "baseHref": "/",
-        "main": "apps/the-beginning/src/main.tsx",
-        "polyfills": "apps/the-beginning/src/polyfills.ts",
-        "tsConfig": "apps/the-beginning/tsconfig.app.json",
-        "assets": [
-          "apps/the-beginning/src/favicon.ico",
-          "apps/the-beginning/src/assets"
-        ],
-        "styles": [],
-        "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
-      },
-      "configurations": {
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "apps/the-beginning/src/environments/environment.ts",
-              "with": "apps/the-beginning/src/environments/environment.prod.ts"
+    "root": "apps/the-beginning",
+    "sourceRoot": "apps/the-beginning/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/web:webpack",
+            "outputs": ["{options.outputPath}"],
+            "defaultConfiguration": "production",
+            "options": {
+                "compiler": "babel",
+                "outputPath": "dist/apps/the-beginning",
+                "index": "apps/the-beginning/src/index.html",
+                "baseHref": "/",
+                "main": "apps/the-beginning/src/main.tsx",
+                "polyfills": "apps/the-beginning/src/polyfills.ts",
+                "tsConfig": "apps/the-beginning/tsconfig.app.json",
+                "assets": [
+                    "apps/the-beginning/src/favicon.ico",
+                    "apps/the-beginning/src/assets"
+                ],
+                "styles": [],
+                "scripts": [],
+                "webpackConfig": "@nrwl/react/plugins/webpack"
+            },
+            "configurations": {
+                "production": {
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/the-beginning/src/environments/environment.ts",
+                            "with": "apps/the-beginning/src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "optimization": true,
+                    "outputHashing": "all",
+                    "sourceMap": false,
+                    "namedChunks": false,
+                    "extractLicenses": true,
+                    "vendorChunk": false
+                }
             }
-          ],
-          "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false
+        },
+        "serve": {
+            "executor": "@nrwl/web:dev-server",
+            "options": {
+                "buildTarget": "the-beginning:build",
+                "hmr": true,
+                "proxyConfig": "apps/the-beginning/proxy.conf.json"
+            },
+            "configurations": {
+                "production": {
+                    "buildTarget": "the-beginning:build:production",
+                    "hmr": false
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/the-beginning/**/*.{ts,tsx,js,jsx}"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/apps/the-beginning"],
+            "options": {
+                "jestConfig": "apps/the-beginning/jest.config.js",
+                "passWithNoTests": true
+            }
+        },
+        "plop": {
+            "executor": "@nrwl/workspace:run-script",
+            "options": {
+                "script": "plop",
+                "outputs": [
+                    "src/components/atoms",
+                    "src/components/molecules",
+                    "src/components/organisms",
+                    "__tests__/unit/components/atoms",
+                    "__tests__/unit/components/molecules",
+                    "__tests__/unit/components/organisms"
+                ]
+            }
+        },
+        "prettier": {
+            "executor": "@nrwl/workspace:run-script",
+            "options": {
+                "script": "prettier src -check",
+                "outputs": ["src"]
+            }
+        },
+        "lint-staged": {
+            "executor": "@nrwl/workspace:run-script",
+            "options": {
+                "script": "lint-staged --config lint-staged.js",
+                "outputs": ["src"]
+            }
         }
-      }
     },
-    "serve": {
-      "executor": "@nrwl/web:dev-server",
-      "options": {
-        "buildTarget": "the-beginning:build",
-        "hmr": true,
-        "proxyConfig": "apps/the-beginning/proxy.conf.json"
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "the-beginning:build:production",
-          "hmr": false
-        }
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/the-beginning/**/*.{ts,tsx,js,jsx}"]
-      }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/the-beginning"],
-      "options": {
-        "jestConfig": "apps/the-beginning/jest.config.js",
-        "passWithNoTests": true
-      }
-    }
-  },
-  "tags": []
+    "tags": []
 }

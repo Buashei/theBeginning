@@ -1,8 +1,7 @@
 {
     "scripts": {
-      "plop": "plop",
-      "lint": "eslint src --color",
-      "prettier": "prettier src -check",
-      "lint-staged": "lint-staged --config lint-staged.js",
+        "plop": "plop",
+        "prettier": "prettier",
+        "lint-staged": "lint-staged"
     }
 }
