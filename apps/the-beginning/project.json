@@ -86,7 +86,7 @@
         "prettier": {
             "executor": "@nrwl/workspace:run-script",
             "options": {
-                "script": "prettier src -check",
+                "script": "prettier --write 'src'",
                 "outputs": ["src"]
             }
         },
